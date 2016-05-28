@@ -1,0 +1,25 @@
+#
+# NOTE! Don't add files that are generated in specific
+# subdirectories here. Add them in the ".gitignore" file
+# in that subdirectory instead.
+#
+# Ignore everything
+#
+*
+
+#
+# Enable specific files
+#
+!*/
+!.gitignore
+!README
+!AUTHORS
+!COPYING
+!HISTORY
+
+#
+# Enable C sources and Makefiles
+#
+!*.c
+!*.h
+!Makefile
