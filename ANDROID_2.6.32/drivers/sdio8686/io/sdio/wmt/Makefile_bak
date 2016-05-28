@@ -1,0 +1,42 @@
+#
+#	File	: Makefile
+#	Copyright © Marvell International Ltd. and/or its affiliates, 2003-2006
+#
+
+# debugging?
+# DEBUG LEVEL n/0/1/2:
+# 0: _PRINTK, _ERROR
+# 1: _DBMSG, _WARNING, IRQ_DEBUG and DEBUG_USEC
+# 2: _ENTER and _LEAVE
+CONFIG_DEBUG=n
+
+CFLAGS += -fno-strict-aliasing -fno-common -mcpu=xscale -mtune=xscale -I.
+
+ifeq ($(CONFIG_DEBUG),0)
+CFLAGS += -DDEBUG_SDIO_LEVEL0
+endif
+
+ifeq ($(CONFIG_DEBUG),1)
+CFLAGS += -DDEBUG_SDIO_LEVEL1 -DIRQ_DEBUG -DDEBUG_USEC
+endif
+
+ifeq ($(CONFIG_DEBUG),2)
+CFLAGS += -DDEBUG_SDIO_LEVEL1 -DDEBUG_SDIO_LEVEL2 -DIRQ_DEBUG -DDEBUG_USEC
+endif
+
+all:		sdio.o
+		@echo "Finished making SDIO Driver"
+
+build:		all
+		@if [ ! -d $(BINDIR) ]; then \
+			mkdir $(BINDIR); \
+		fi
+		@if [ "$(CONFIG_DEBUG)" == "y" ]; then \
+			cp sdio.o $(BINDIR)/sdio-bulverde-dbg.o; \
+		else \
+			cp sdio.o $(BINDIR)/sdio-bulverde.o; \
+		fi
+
+clean:
+		rm -f *.o *~ core
+

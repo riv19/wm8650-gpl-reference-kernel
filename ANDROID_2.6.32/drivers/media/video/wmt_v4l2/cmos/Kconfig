@@ -1,0 +1,38 @@
+#
+# Multimedia Video device configuration
+#
+
+config WMT_V4L2_CMOS
+	bool "WonderMedia Hardware CMOS Support"
+	default y
+	---help---
+	  Say Y here to use hardware CMOS Support.
+
+choice
+	prompt "Select CMOS external device"
+	depends on (WMT_V4L2_CMOS)
+	default WMT_V4L2_CMOS_OV7670
+
+config WMT_V4L2_CMOS_OV7670
+	bool "OV7670 selected"
+	help
+        If you have a OV7670 CMOS on board,
+	    say Y here.
+
+config WMT_V4L2_CMOS_OV7675
+	bool "OV7675 selected"
+	help
+        If you have a OV7675 CMOS on board,
+	    say Y here.
+
+
+config WMT_V4L2_CMOS_OV2640
+	bool "OV2640 selected"
+	help
+        If you have a OV2640 CMOS on board,
+	    say Y here.
+
+endchoice  	
+  
+
+ 	

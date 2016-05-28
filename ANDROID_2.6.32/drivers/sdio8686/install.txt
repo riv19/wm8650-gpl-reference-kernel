@@ -1,0 +1,18 @@
+Modify sd8686_870_r06/Makefile
+1. According to your kernel's position, modify the macro "KERNELDIR". 
+2. According to the compile tool of you use, modify the macro "CROSS"
+3. According to your compile tool's position, modify the macro "TOOLPATH_VT8430"
+
+compile:
+	cd sd8686_870_r06
+	make
+
+install:
+	insmod sdio.ko
+	insmod sd8xxx.ko
+
+uninstall:
+
+	rmmod sd8xxx
+	rmmod sdio
+	
